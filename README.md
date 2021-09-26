@@ -10,7 +10,7 @@
 * JavaScript
 * Angular
 * Html
-* Css
+* Scss
 * Git
 
 ## Description of project
