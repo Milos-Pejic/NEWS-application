@@ -1,0 +1,36 @@
+
+<div class="wrapper">
+    <div class="sort">
+        <button (click)="latestOldest()">{{editMode2 ? 'Latest news':'Oldest news'}}</button>
+    </div>
+    <ul class="sort-el">
+        <li><input [(ngModel)]="inputValue" type="text" placeholder="search"></li>
+        <li><button (click)="newLen()">{{editMode ? 'EN' : 'DE'}}</button></li>
+    </ul>
+</div>
+<div class="headlines">
+    <div class="headlines-wrapper">
+        <div class="article-item" *ngFor="let el of news | search:inputValue 
+        | paginate: { itemsPerPage: 8, currentPage: page, totalItems:totalLength}">
+            <article>
+                <div class="article-item-wrapper">
+                    <div class="article-item-img">
+                        <img src="{{el.image || placeholderPic}}" alt="{{el.title}}">
+                    </div>
+                    <div class="article-item-description">
+                        <p>{{el.title}}</p>
+                    </div>
+                    <div class="article-item-info">
+                        <p>{{el.author || 'SPORT' | shortenAuthor}} | {{el.published_at | date}}</p>
+                    </div>
+                    <div class="articel-item-more">
+                            <a href="{{el.url}}"target="_blank">more &#187;</a>
+                        </div>
+                </div>
+            </article>
+        </div>
+    </div>
+    <div class="plagination">
+        <pagination-controls  (pageChange)="page = $event"></pagination-controls>
+    </div>
+</div>
