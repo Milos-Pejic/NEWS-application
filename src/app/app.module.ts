@@ -12,6 +12,7 @@ import { HeaderComponent } from './header/header.component';
 import { SearchPipe } from './pipe/search.pipe';
 import { FormsModule } from '@angular/forms';
 import { ShortenAuthorPipe } from './pipe/shorten-title.pipe';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { ShortenAuthorPipe } from './pipe/shorten-title.pipe';
     TechnologyComponent,
     HeaderComponent,
     SearchPipe,
-    ShortenAuthorPipe
+    ShortenAuthorPipe,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

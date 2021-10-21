@@ -8,14 +8,17 @@
         <li><button (click)="newLen()">{{editMode ? 'EN' : 'DE'}}</button></li>
     </ul>
 </div>
-<div class="headlines">
+<div class="fetching" *ngIf="isFetching">
+    <h3>Loading..</h3>
+</div>
+<div *ngIf="!isFetching" class="headlines">
     <div class="headlines-wrapper">
         <div class="article-item" *ngFor="let el of news | search:inputValue 
         | paginate: { itemsPerPage: 8, currentPage: page, totalItems:totalLength}">
             <article>
                 <div class="article-item-wrapper">
                     <div class="article-item-img">
-                        <img src="{{el.image || placeholderPic}}" alt="{{el.title}}">
+                        <img src="{{el.image ? el.image : placeholderPic}}" alt="{{el.title}}">
                     </div>
                     <div class="article-item-description">
                         <p>{{el.title}}</p>

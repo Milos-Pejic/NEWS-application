@@ -12,17 +12,21 @@ export class TechnologyComponent implements OnInit {
   inputValue:string;
   editMode = false;
   editMode2= true;
-  placeholderPic:string= 'https://thumbs.dreamstime.com/z/abstract-futuristic-hi-tech-background-blue-light-effects-round-placeholder-sci-fi-glowing-sphere-technology-digital-224692604.jpg'
+  placeholderPic:string= 'https://image.shutterstock.com/image-vector/abstract-technology-logo-260nw-623206427.jpg'
   
   totalLength:any;
   page:any = 1;
+
+  isFetching:boolean= false;
   constructor(private newsService: NewsService) { }
 
   ngOnInit(): void {
+    this.isFetching= true
     this.newsService.getTehnologyNews().subscribe((resp:any)=>{
-      console.log(resp.data);
+      this.news=resp.data;
       this.totalLength =resp.data.length;
-      this.news= resp.data;
+      this.editMode = true;
+      this.isFetching= false;
     })
   }
   newLen() {
@@ -41,9 +45,9 @@ export class TechnologyComponent implements OnInit {
   }
   latestOldest(){
     if(this.editMode2){
-      this.news.sort(function(a,b):any{
+      console.log(this.news.sort(function(a,b):any{
         return  new Date(b.published_at).valueOf() - new Date(a.published_at).valueOf();
-       });
+       }))
        this.editMode2= false;
     }else{
       this.news.sort(function(a,b):any{
